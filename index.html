@@ -1,15 +1,140 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="P5/p5.js"></script>
-        <script src="P5/p5.dom.min.js"></script>
-        <script src="P5/p5.sound.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.min.js"></script>
+        <script src="p5.dom.min.js"></script>
+        <script src="p5.play.js"></script>
+
+        <script>
+            function heading(){
+                animation(icon, width/30, height/22);
+                if(mouseX > width/30-64/2 && mouseX < width/30+64/2 && mouseY > height/22-64/2 && mouseY < height/22+64/2){
+                    icon.play();
+                }else {
+                    icon.changeFrame(3);
+                    icon.stop();
+                }
+                
+                textFont(Font2);
+                fill(0);
+                textSize(20);
+                text(website + ':/My Games', width/15, height/18);
+                text('click on play text to play the game!', width/1.4, height/20);
+            };
+        </script>
+
+        <script>
+            class Button{
+                constructor(x, y, name){
+                    this.name = name;
+                    this.x = x;
+                    this.y = y;
+                    this.width = 50;
+                    this.height = 30;
+                };
+
+                click(){
+                    if(mouseX > this.x-this.width/2 && mouseX < this.x+this.width/2 && mouseY > this.y-this.height/2 && mouseY < this.y+this.height/2){
+                        return true;
+                    }
+                };
+
+                show(){
+                    fill(255);
+                    textSize(22);
+                    text(this.name, this.x-20, this.y+5);
+                };
+            };
+        </script>
 
         <link rel="stylesheet" type="text/css" href="style.css">
         <meta charset="utf-8">
 
     </head>
     <body>
-        <script src="sketch.js"></script>
+        <script>
+            var Font1, Font2;
+
+            var icon;
+            var website = 'WebSite64';
+            var directory = '~/My Games';
+
+            var ReachTheMoon;
+            var ReachTheMoonButton;
+            var Target;
+            var TargetButton;
+
+            function preload(){
+                Font1 = loadFont('Font1.ttf');
+                Font2 = loadFont('Font2.ttf');
+
+                icon = loadAnimation('Images/Icon/icon_01.png', 'Images/Icon/icon_02.png', 'Images/Icon/icon_03.png', 'Images/Icon/icon_04.png');
+                icon.frameDelay = 5;
+            };
+
+            function setup() {
+                createCanvas(1200, 800);
+
+                ReachTheMoonButton = new Button(width/22, height/5.7, 'play');
+
+                TargetButton = new Button(width/22, height/3.7, 'play');
+            };
+
+            function draw() {
+                background(0); 
+                rectMode(CENTER);
+                noStroke(); 
+
+                fill(250);
+                rect(width/2, height/24, width, height/12);
+                
+                heading();
+
+                fill(0, 191, 0);
+                textSize(20);
+                text('Reach The Moon',  width/100, height/7);  
+
+                fill(191, 0, 191);
+                textSize(20);
+                text(website,  width/7, height/7);
+                    
+                fill(191, 191, 0);
+                textSize(20);
+                text(directory,  width/4.3, height/7);
+
+                fill(255);
+                textSize(20);
+                text('$',  width/100, height/5.5);
+        
+                fill(0, 191, 0);
+                textSize(20);
+                text('Target',  width/100, height/4.2);  
+
+                fill(191, 0, 191);
+                textSize(20);
+                text(website,  width/14, height/4.2);
+                    
+                fill(191, 191, 0);
+                textSize(20);
+                text(directory,  width/6, height/4.2);
+
+                fill(255);
+                textSize(20);
+                text('$',  width/100, height/3.6);
+
+                ReachTheMoonButton.show();
+                TargetButton.show();
+
+            };
+
+            function mouseReleased(){
+                if(ReachTheMoonButton.click()){
+                    window.location.replace('https://madhavasai-15.github.io/Reach-The-Moon/');
+                }else if(TargetButton.click()){
+                    window.location.replace('https://madhavasai-15.github.io/Target/');
+                } 
+            };
+        </script>
     </body>
 </html>

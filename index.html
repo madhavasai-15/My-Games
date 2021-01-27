@@ -57,6 +57,9 @@
             var Font1, Font2;
 
             var icon;
+            var intro = [];
+            var intro_image = 1;
+
             var website = 'WebSite64';
             var directory = '~/My Games';
 
@@ -65,75 +68,117 @@
             var Target;
             var TargetButton;
 
+            var state = 0;
+            var background_color = 255;
+
             function preload(){
                 Font1 = loadFont('Font1.ttf');
                 Font2 = loadFont('Font2.ttf');
 
                 icon = loadAnimation('Images/Icon/icon_01.png', 'Images/Icon/icon_02.png', 'Images/Icon/icon_03.png', 'Images/Icon/icon_04.png');
                 icon.frameDelay = 5;
+
+                for(var i = 1; i < 8; i++){
+                    intro[i] = loadImage('Images/Intro/intro_0' + i + '.png');
+                }
             };
 
             function setup() {
                 createCanvas(1200, 800);
 
                 ReachTheMoonButton = new Button(width/22, height/5.7, 'play');
-
                 TargetButton = new Button(width/22, height/3.7, 'play');
+
+                
             };
 
             function draw() {
-                background(0); 
+                background(background_color); 
                 rectMode(CENTER);
                 noStroke(); 
+                imageMode(CENTER);
 
-                fill(250);
-                rect(width/2, height/24, width, height/12);
-                
-                heading();
+                if(state === 0){
+                    if(frameCount % 10 === 0 && intro_image < 7){
+                        intro_image++;
+                    }
 
-                fill(0, 191, 0);
-                textSize(20);
-                text('Reach The Moon',  width/100, height/7);  
+                    if(frameCount % 80 === 0 && intro_image >= 7){
+                        state = 1;
+                    }
 
-                fill(191, 0, 191);
-                textSize(20);
-                text(website,  width/7, height/7);
                     
-                fill(191, 191, 0);
-                textSize(20);
-                text(directory,  width/4.3, height/7);
-
-                fill(255);
-                textSize(20);
-                text('$',  width/100, height/5.5);
-        
-                fill(0, 191, 0);
-                textSize(20);
-                text('Target',  width/100, height/4.2);  
-
-                fill(191, 0, 191);
-                textSize(20);
-                text(website,  width/14, height/4.2);
+                    if(intro_image === 1){
+                        image(intro[1], width/2, height/2);
+                    }else if(intro_image === 2){
+                        image(intro[2], width/2, height/2);
+                    }else if(intro_image === 3){
+                        image(intro[3], width/2, height/2);
+                    }else if(intro_image === 4){
+                        image(intro[4], width/2, height/2);
+                    }else if(intro_image === 5){
+                        image(intro[5], width/2, height/2);
+                    }else if(intro_image === 6){
+                        image(intro[6], width/2, height/2);
+                    }else if(intro_image === 7){
+                        image(intro[7], width/2, height/2);
+                    }
                     
-                fill(191, 191, 0);
-                textSize(20);
-                text(directory,  width/6, height/4.2);
 
-                fill(255);
-                textSize(20);
-                text('$',  width/100, height/3.6);
+                    
+                }else if(state === 1){
+                    background_color = 0;
 
-                ReachTheMoonButton.show();
-                TargetButton.show();
+                    fill(250);
+                    rect(width/2, height/24, width, height/12);
+                    
+                    heading();
 
+                    fill(0, 191, 0);
+                    textSize(20);
+                    text('Reach The Moon',  width/100, height/7);  
+
+                    fill(191, 0, 191);
+                    textSize(20);
+                    text(website,  width/7, height/7);
+                        
+                    fill(191, 191, 0);
+                    textSize(20);
+                    text(directory,  width/4.3, height/7);
+
+                    fill(255);
+                    textSize(20);
+                    text('$',  width/100, height/5.5);
+            
+                    fill(0, 191, 0);
+                    textSize(20);
+                    text('Target',  width/100, height/4.2);  
+
+                    fill(191, 0, 191);
+                    textSize(20);
+                    text(website,  width/14, height/4.2);
+                        
+                    fill(191, 191, 0);
+                    textSize(20);
+                    text(directory,  width/6, height/4.2);
+
+                    fill(255);
+                    textSize(20);
+                    text('$',  width/100, height/3.6);
+
+                    ReachTheMoonButton.show();
+                    TargetButton.show();
+                }
             };
 
             function mouseReleased(){
-                if(ReachTheMoonButton.click()){
-                    window.location.replace('https://madhavasai-15.github.io/Reach-The-Moon/');
-                }else if(TargetButton.click()){
-                    window.location.replace('https://madhavasai-15.github.io/Target/');
-                } 
+                if(state === 1){
+                    if(ReachTheMoonButton.click()){
+                        window.location.replace('https://madhavasai-15.github.io/Reach-The-Moon/');
+                    }else if(TargetButton.click()){
+                        window.location.replace('https://madhavasai-15.github.io/Target/');
+                    }
+                }
             };
         </script>
     </body>

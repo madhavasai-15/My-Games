@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Madhavasai - My Games </title>
+        <title> Madhavasai </title>
+        <link rel="icon" href="Icon.png">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.min.js"></script>
         <script src="p5.dom.min.js"></script>
@@ -210,11 +211,11 @@
                     var text_Width1 = textWidth(text_1); 
                     text(text_1, width/2-text_Width1/2, height/4+480/2+5);
 
-                    fill(0, 255, 0);
+                    fill(0);
                     textSize(24);
                     var text_2 = 'Loading';
                     var text_Width2 = textWidth(text_2); 
-                    text(text_2, width/2-text_Width2/2, height/4+480/1.5);
+                    text(text_2, width/2-text_Width2/2, height/4+480/2+100);
                     
 
                     if(frameCount % 240 === 0){
@@ -229,20 +230,6 @@
                     var text_ = 'Want a more Info?'
                     var text_Width = textWidth(text_); 
                     text(text_, width/2-text_Width/2, height/4+480/2-80);
-
-                    rect(width/2, height/4+480/2, width/10, height/10);
-
-                    fill(255);
-                    textSize(24);
-                    var text_1 = 'Tutorial';
-                    var text_Width1 = textWidth(text_1); 
-                    text(text_1, width/2-text_Width1/2, height/4+480/2+5);
-
-                    fill(0, 255, 0);
-                    textSize(24);
-                    var text_2 = 'Loading';
-                    var text_Width2 = textWidth(text_2); 
-                    text(text_2, width/2-text_Width2/2, height/4+480/1.5);
 
                     if(frameCount % 240 === 0){
                         window.location.href = 'https://madhavasai-15.github.io/Target/';
@@ -259,7 +246,7 @@
                     }
                 }else if(state === 2){
                     if(mouseX > width/2-100/2 && mouseX < width/2+100/2 && mouseY > height/4+480/2-height/10/2 && mouseY < height/4+480/2+height/10/2){
-                        window.location.href = 'http://127.0.0.1:5501/My-Template/';
+                        window.location.href = 'https://madhavasai-15.github.io/ReachTheMoon-Guide/';
                     }
                 }
             };
